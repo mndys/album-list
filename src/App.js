@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import styled from "styled-components"
+import Card from "./components/Card"
 
 function App() {
   const [error, setError] = useState(null)
@@ -13,9 +15,9 @@ function App() {
       },
     }
     fetch(url, headers)
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch((err) => {
+      .then(res => res.json())
+      .then(res => setData(res))
+      .catch(err => {
         setError(err)
         console.error("There was an error fetching data", err)
       })
@@ -23,21 +25,26 @@ function App() {
 
   return (
     <div className="App">
-      {data === null && error && "Oh no! There was an error loading your data."}
-      {data === null && !error && "is Loading..."}
-      {data !== null && (
-        <ul>
-          {data.map(({ id, title, artist, released_in }) => (
-            <li key={id}>
-              <h1>{title}</h1>
-              <span>{artist}</span>
-              <span>({released_in})</span>
-            </li>
-          ))}
-        </ul>
-      )}
+      <CardGrid>
+        <h1>Album List</h1>
+        {data === null &&
+          error &&
+          "Oh no! There was an error loading your data."}
+        {data === null && !error && "is Loading..."}
+        {data !== null &&
+          data.map(album => <Card key={album.id} data={album} />)}
+      </CardGrid>
     </div>
   )
 }
 
 export default App
+
+const CardGrid = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 2em;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+`
