@@ -45,24 +45,25 @@ export default createGlobalStyle`
   }
   
   h1, h2, h3{
-    font-size: 1.3em;
-    line-height: 1.1em;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    padding-bottom: .3em;
     color: var(--color-primary-dark);
+    margin: 0;
+    padding: 0
   }
 
   h1 {
-    font-size: 2em;
-    padding: 2rem 0 .5rem 0;
+    font-size: 2rem;
+    padding: 3rem 0 1rem 0;
+    text-transform: uppercase;
     text-align: center;
   }
 
-  h3{
-    font-size: clamp(.8em, 4vw, 1em);
-    margin: 2rem 0 .5rem 0;
+  h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 1rem;
   }
 
   textarea {
