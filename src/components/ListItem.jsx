@@ -6,7 +6,7 @@ export default function ListItem({ data, handleDelete, handleEdit }) {
   return (
     <Row>
       <td>
-        <Icon onClick={event => handleEdit(event, id)} aria-label="edit">
+        <Icon onClick={() => handleEdit(id)} aria-label="edit">
           ✏️
         </Icon>
       </td>

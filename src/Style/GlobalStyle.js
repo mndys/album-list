@@ -34,14 +34,16 @@ export default createGlobalStyle`
 
   input, textarea {
     border: 2px solid var(--color-silver);
-    padding: 4px;
+    padding: .2em .7em;
   }
 
   button {
-    border-radius: 4px;
     background: var(--color-secondary);
     border: none;
     letter-spacing: 0.2em;
+    font-weight: 700;
+    color: white;
+    padding: 0.5em 2em;
   }
   
   h1, h2, h3{
