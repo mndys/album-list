@@ -1,0 +1,38 @@
+[
+  {
+    "id": 5272,
+    "title": "Saufen morgens, mittags, abends - Die Party",
+    "artist": "Ingo ohne Flamingo",
+    "released_in": 2018,
+    "created_at": "2021-05-24T12:01:52.767Z",
+    "updated_at": "2021-05-24T12:01:52.767Z",
+    "url": "https://hk-test-api.herokuapp.com/albums/5272.json"
+  },
+  {
+    "id": 5273,
+    "title": "When We All Fall Asleep, Where Do We Go?",
+    "artist": "Billie Eilish",
+    "released_in": 2019,
+    "created_at": "2021-05-24T12:01:52.773Z",
+    "updated_at": "2021-05-24T12:01:52.773Z",
+    "url": "https://hk-test-api.herokuapp.com/albums/5273.json"
+  },
+  {
+    "id": 5274,
+    "title": "In the Middle of Nowhere",
+    "artist": "Modern Talking",
+    "released_in": 1986,
+    "created_at": "2021-05-24T12:01:52.778Z",
+    "updated_at": "2021-05-24T12:01:52.778Z",
+    "url": "https://hk-test-api.herokuapp.com/albums/5274.json"
+  },
+  {
+    "id": 5275,
+    "title": "Thriller",
+    "artist": "Michael Jackson",
+    "released_in": 1982,
+    "created_at": "2021-05-24T12:01:52.784Z",
+    "updated_at": "2021-05-24T12:01:52.784Z",
+    "url": "https://hk-test-api.herokuapp.com/albums/5275.json"
+  }
+]
