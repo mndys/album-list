@@ -1,15 +1,19 @@
 import styled from "styled-components/macro"
 
-export default function ListItem({ data, handleDelete }) {
+export default function ListItem({ data, handleDelete, handleEdit }) {
   const { id, title, artist, released_in } = data
 
   return (
     <Row>
       <td>
-        <Icon>✏️</Icon>
+        <Icon onClick={event => handleEdit(event, id)} aria-label="edit">
+          ✏️
+        </Icon>
       </td>
       <td>
-        <Icon onClick={() => handleDelete(id)}>🗑️</Icon>
+        <Icon onClick={() => handleDelete(id)} aria-label="delete">
+          🗑️
+        </Icon>
       </td>
       <td>
         <h3>{title}</h3>

@@ -1,7 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import styled from "styled-components/macro"
+import axios from "axios"
 import ListItem from "./components/ListItem"
+import styled from "styled-components/macro"
 
 function App() {
   const url = "https://hk-test-api.herokuapp.com/albums/"
@@ -61,6 +61,10 @@ function App() {
     }
   }
 
+  function editOne(event, id) {
+    console.log(`handleEdit: Element ${id} clicked!`, event)
+  }
+
   return (
     <List className="App">
       <h1>Album List</h1>
@@ -84,7 +88,12 @@ function App() {
           </thead>
           <tbody>
             {status.data.map(album => (
-              <ListItem key={album.id} data={album} handleDelete={deleteOne} />
+              <ListItem
+                key={album.id}
+                data={album}
+                handleDelete={deleteOne}
+                handleEdit={editOne}
+              />
             ))}
           </tbody>
         </table>
@@ -123,6 +132,7 @@ const List = styled.div`
       :hover {
         background-color: var(--color-secondary);
         color: white;
+
         h3 {
           color: white;
         }
