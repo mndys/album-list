@@ -2,7 +2,6 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import styled from "styled-components/macro"
 import ListItem from "./components/ListItem"
-import useFetch from "./services/useFetch"
 
 function App() {
   const url = "https://hk-test-api.herokuapp.com/albums/"
