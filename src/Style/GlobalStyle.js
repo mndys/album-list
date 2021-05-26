@@ -2,13 +2,14 @@ import { createGlobalStyle } from "styled-components/macro"
 
 export default createGlobalStyle`
   * {
-    --color-primary: #0f6f7bff;
-    --color-primary-dark: #093a40ff;
-    --color-secondary: #fca311ff;
-    --color-platinum: #e4e4e4ff;
-    --color-silver: #c3c3c3ff;
-    --color-text: #0e1516ff;
-    --shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;;
+    --color-primary: hsl(190, 80%, 30%);
+    --color-primary-dark: hsl(190, 80%, 15%);
+    --color-overlay: hsla(190, 80%, 15%, 0.2);
+    --color-secondary: hsl(40, 80%, 50%);
+    --color-platinum: hsl(0, 0%, 90%);
+    --color-silver: hsl(0, 0%, 75%);
+    --color-text: hsl(190, 80%, 10%);
+    --shadow:  0 4px 12px 0 hsla(0, 0%, 0%, 0.1);
     box-sizing: border-box;
 }
 
@@ -40,10 +41,12 @@ export default createGlobalStyle`
   button {
     background: var(--color-secondary);
     border: none;
-    letter-spacing: 0.2em;
-    font-weight: 700;
     color: white;
-    padding: 0.5em 2em;
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    padding: 0.3em 0;
+    text-transform: uppercase;
   }
   
   h1, h2, h3{
