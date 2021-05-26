@@ -117,7 +117,7 @@ function App() {
           handleClose={closeModal}
         />
       )}
-      <List className={currentAlbumId ? "blurred" : false}>
+      <List>
         <h1>Album List</h1>
         {status.data && status.data.length !== 0 && (
           <table>
@@ -173,7 +173,7 @@ const List = styled.div`
   }
 
   thead {
-    border-bottom: 2px dotted var(--color-primary-dark);
+    border-bottom: 1px solid var(--color-primary-dark);
   }
 
   tbody {
@@ -189,10 +189,6 @@ const List = styled.div`
           color: white;
         }
       }
-    }
-
-    .blurred {
-      filter: blur(2px);
     }
   }
 `
