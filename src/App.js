@@ -13,7 +13,7 @@ function App() {
   })
   const [currentAlbumId, setCurrentAlbumId] = useState(null)
 
-  // Get Data from API
+  // Get Data from API on load
   useEffect(() => {
     const headers = {
       headers: {
@@ -23,8 +23,6 @@ function App() {
     }
     fetchGet(url, headers, setStatus)
   }, [])
-
-  // useMemo(() => function, input)
 
   async function fetchGet(url, headers, setStatus) {
     setStatus(prevStatus => ({ ...prevStatus, isLoading: true }))
@@ -93,7 +91,6 @@ function App() {
       newStatus.data[newStatus.data.indexOf(currentObject)] = newListObject
       newStatus.error = null
       setStatus(newStatus)
-      console.log("show new status.data", newStatus)
     } catch (error) {
       newStatus.error = await error.message
       console.error("There was an error deleting data:", error)
