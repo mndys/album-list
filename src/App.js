@@ -6,12 +6,6 @@ import Modal from "./components/Modal"
 
 function App() {
   const url = "https://hk-test-api.herokuapp.com/albums/"
-  const headers = {
-    headers: {
-      "X-API-Key": process.env.REACT_APP_X_API_KEY,
-      Accept: "application/json",
-    },
-  }
   const [status, setStatus] = useState({
     data: null,
     error: null,
@@ -21,22 +15,30 @@ function App() {
 
   // Get Data from API
   useEffect(() => {
-    fetchGet(url, headers, status, setStatus)
+    const headers = {
+      headers: {
+        "X-API-Key": process.env.REACT_APP_X_API_KEY,
+        Accept: "application/json",
+      },
+    }
+    fetchGet(url, headers, setStatus)
   }, [])
 
-  async function fetchGet(url, headers, status, setStatus) {
-    const newStatus = { ...status, isLoading: true }
-    setStatus(newStatus)
+  // useMemo(() => function, input)
+
+  async function fetchGet(url, headers, setStatus) {
+    setStatus(prevStatus => ({ ...prevStatus, isLoading: true }))
     try {
       const res = await axios(url, headers)
-      newStatus.data = await res.data.sort((a, b) => a.id - b.id)
-      await setStatus(newStatus)
+      await setStatus(prevStatus => ({
+        ...prevStatus,
+        data: res.data.sort((a, b) => a.id - b.id),
+      }))
     } catch (error) {
-      newStatus.error = await error.message
-      await setStatus(newStatus)
-      console.error(error)
+      await setStatus(prevStatus => ({ ...prevStatus, error: error.message }))
+      console.error("fetchGet threw an error:", error)
     } finally {
-      setStatus({ ...newStatus, isLoading: false })
+      setStatus(prevStatus => ({ ...prevStatus, isLoading: false }))
     }
   }
 
