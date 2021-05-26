@@ -2,19 +2,20 @@ import { createGlobalStyle } from "styled-components/macro"
 
 export default createGlobalStyle`
   * {
-    --color-primary: #0f6f7bff;
-    --color-primary-dark: #093a40ff;
-    --color-secondary: #fca311ff;
-    --color-platinum: #e4e4e4ff;
-    --color-silver: #c3c3c3ff;
-    --color-text: #0e1516ff;
-    --shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;;
+    --color-primary: hsl(209, 100%, 30%);
+    --color-primary-dark: hsl(209, 100%, 15%);
+    --color-overlay: hsla(209, 100%, 15%, 0.2);
+    --color-secondary: hsl(100, 100%, 30%);
+    --color-platinum: hsl(0, 0%, 96%);
+    --color-silver: hsl(0, 0%, 80%);
+    --color-text: hsl(209, 100%, 10%);
+    --shadow:  3px 3px 5px hsla(0, 0%, 0%, 0.2);
     box-sizing: border-box;
 }
 
   body {
     margin: 0 auto;
-    font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Source Sans Pro', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 112.5%;
     line-height: 1.5;
     color: var(--color-text)
@@ -34,14 +35,18 @@ export default createGlobalStyle`
 
   input, textarea {
     border: 2px solid var(--color-silver);
-    padding: 4px;
+    padding: .2em .7em;
   }
 
   button {
-    border-radius: 4px;
     background: var(--color-secondary);
     border: none;
+    color: white;
+    font-size: 1em;
+    font-weight: 700;
     letter-spacing: 0.2em;
+    padding: 0.3em 0;
+    text-transform: uppercase;
   }
   
   h1, h2, h3{
@@ -72,6 +77,6 @@ export default createGlobalStyle`
   }
   
   ::placeholder {
-    font-size: .8em;
+    font-size: 1em;
   }
 `

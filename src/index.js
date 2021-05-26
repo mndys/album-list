@@ -4,10 +4,12 @@ import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import GlobalStyle from "./Style/GlobalStyle"
+import GlobalFonts from "./Style/GlobalFonts"
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
+    <GlobalFonts />
     <App />
   </React.StrictMode>,
   document.getElementById("root")
