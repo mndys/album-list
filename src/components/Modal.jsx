@@ -62,6 +62,7 @@ const Backdrop = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: var(--color-overlay);
+  z-index: 1;
 `
 
 const Content = styled.div`

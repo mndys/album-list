@@ -163,7 +163,7 @@ export default App
 
 const List = styled.div`
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 800px;
   padding: 1vh 5vw;
   display: grid;
   grid-template-columns: 1fr;
