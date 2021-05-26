@@ -2,20 +2,20 @@ import { createGlobalStyle } from "styled-components/macro"
 
 export default createGlobalStyle`
   * {
-    --color-primary: hsl(190, 80%, 30%);
-    --color-primary-dark: hsl(190, 80%, 15%);
-    --color-overlay: hsla(190, 80%, 15%, 0.2);
-    --color-secondary: hsl(40, 80%, 50%);
-    --color-platinum: hsl(0, 0%, 90%);
-    --color-silver: hsl(0, 0%, 75%);
-    --color-text: hsl(190, 80%, 10%);
-    --shadow:  0 4px 12px 0 hsla(0, 0%, 0%, 0.1);
+    --color-primary: hsl(209, 100%, 30%);
+    --color-primary-dark: hsl(209, 100%, 15%);
+    --color-overlay: hsla(209, 100%, 15%, 0.2);
+    --color-secondary: hsl(100, 100%, 30%);
+    --color-platinum: hsl(0, 0%, 96%);
+    --color-silver: hsl(0, 0%, 80%);
+    --color-text: hsl(209, 100%, 10%);
+    --shadow:  3px 3px 5px hsla(0, 0%, 0%, 0.2);
     box-sizing: border-box;
 }
 
   body {
     margin: 0 auto;
-    font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Source Sans Pro', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 112.5%;
     line-height: 1.5;
     color: var(--color-text)
@@ -42,7 +42,7 @@ export default createGlobalStyle`
     background: var(--color-secondary);
     border: none;
     color: white;
-    font-size: 0.8em;
+    font-size: 1em;
     font-weight: 700;
     letter-spacing: 0.2em;
     padding: 0.3em 0;
@@ -77,6 +77,6 @@ export default createGlobalStyle`
   }
   
   ::placeholder {
-    font-size: .8em;
+    font-size: 1em;
   }
 `
