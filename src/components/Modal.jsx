@@ -12,7 +12,7 @@ export default function Modal({ status, id, handleEdit, handleClose }) {
 
   return (
     <Backdrop>
-      <Content ref={modal}>
+      <Content ref={modal} onSubmit={event => handleSubmit(event)}>
         <h2>Edit Album</h2>
         <label htmlFor="album">Album</label>
         <input
@@ -21,8 +21,9 @@ export default function Modal({ status, id, handleEdit, handleClose }) {
           value={newObject.title}
           onChange={event => {
             setNewObject({ ...newObject, title: event.target.value })
-            console.log(newObject)
           }}
+          pattern="[A-Za-z].+"
+          required
         />
         <label htmlFor="artist">Artist</label>
         <input
@@ -32,27 +33,41 @@ export default function Modal({ status, id, handleEdit, handleClose }) {
           onChange={event =>
             setNewObject({ ...newObject, artist: event.target.value })
           }
+          pattern="[A-Za-z].+"
+          required
         />
         <label htmlFor="year">Year</label>
         <input
           type="number"
-          minLength={3}
+          minLength="3"
+          min="0"
           max={new Date().getFullYear() + 2}
           name="year"
           value={newObject.released_in}
           onChange={event =>
-            setNewObject({ ...newObject, released_in: event.target.value })
+            setNewObject({
+              ...newObject,
+              released_in: Number(event.target.value),
+            })
           }
+          required
         />
-        <button className="cancel" onClick={handleClose}>
+        <button className="cancel" onClick={handleClose} type="button">
           Cancel
         </button>
-        <button className="save" onClick={() => handleEdit(id, newObject)}>
+        <button className="save" type="submit">
           Save
         </button>
       </Content>
     </Backdrop>
   )
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log("id", id)
+    console.log("newObject", newObject)
+    handleEdit(id, newObject)
+  }
 }
 
 const Backdrop = styled.section`
@@ -65,7 +80,7 @@ const Backdrop = styled.section`
   z-index: 1;
 `
 
-const Content = styled.div`
+const Content = styled.form`
   position: absolute;
   top: 20%;
   left: 50%;
