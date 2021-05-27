@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import axios from "axios"
 import ListItem from "./components/ListItem"
 import styled from "styled-components/macro"
 import Modal from "./components/Modal"
+import toast, { Toaster } from "react-hot-toast"
+import useFetchGet from "./hooks/useFetchGet.jsx"
 
 function App() {
   const url = "https://hk-test-api.herokuapp.com/albums/"
@@ -14,100 +16,18 @@ function App() {
   const [currentAlbumId, setCurrentAlbumId] = useState(null)
 
   // Get Data from API on load
-  useEffect(() => {
-    const headers = {
-      headers: {
-        "X-API-Key": process.env.REACT_APP_X_API_KEY,
-        Accept: "application/json",
-      },
-    }
-    fetchGet(url, headers, setStatus)
-  }, [])
-
-  async function fetchGet(url, headers, setStatus) {
-    setStatus(prevStatus => ({ ...prevStatus, isLoading: true }))
-    try {
-      const res = await axios(url, headers)
-      await setStatus(prevStatus => ({
-        ...prevStatus,
-        data: res.data.sort((a, b) => a.id - b.id),
-      }))
-    } catch (error) {
-      await setStatus(prevStatus => ({ ...prevStatus, error: error.message }))
-      console.error("fetchGet threw an error:", error)
-    } finally {
-      setStatus(prevStatus => ({ ...prevStatus, isLoading: false }))
-    }
-  }
-
-  // Delete Item from API
-  async function deleteOne(id) {
-    const deleteUrl = url + id
-    const headers = {
-      headers: {
-        "X-API-Key": process.env.REACT_APP_X_API_KEY,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }
-    const newStatus = { ...status, isLoading: true }
-    setStatus(newStatus)
-    try {
-      await axios.delete(deleteUrl, headers)
-      newStatus.data = status.data.filter(album => album.id !== id)
-      newStatus.error = null
-      setStatus(newStatus)
-    } catch (error) {
-      newStatus.error = await error.message
-      console.error("There was an error deleting data:", error)
-      setStatus(newStatus)
-    } finally {
-      setStatus({ ...newStatus, isLoading: false })
-    }
-  }
-
-  // Edit Item from API
-  function showEditModal(id) {
-    setCurrentAlbumId(id)
-  }
-
-  async function editOne(id, newObject) {
-    const editUrl = url + id
-    const options = {
-      headers: {
-        "X-API-Key": process.env.REACT_APP_X_API_KEY,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }
-    const newStatus = { ...status, isLoading: true }
-    const currentObject = newStatus.data.filter(album => album.id === id)[0]
-    const newListObject = { ...currentObject, ...newObject }
-
-    setStatus(newStatus)
-
-    try {
-      await axios.put(editUrl, newObject, options)
-      newStatus.data[newStatus.data.indexOf(currentObject)] = newListObject
-      newStatus.error = null
-      setStatus(newStatus)
-    } catch (error) {
-      newStatus.error = await error.message
-      console.error("There was an error deleting data:", error)
-      setStatus(newStatus)
-    } finally {
-      setStatus({ ...newStatus, isLoading: false })
-      closeModal()
-    }
-  }
-
-  // Exit Modal
-  function closeModal() {
-    setCurrentAlbumId(null)
-  }
+  useFetchGet(url, setStatus)
 
   return (
     <div className="App">
+      <Toaster
+        toastOptions={{
+          style: {
+            color: "var(--color-primary-dark)",
+            transform: "translate(0, -20%)",
+          },
+        }}
+      />
       {currentAlbumId && (
         <Modal
           status={status}
@@ -151,11 +71,91 @@ function App() {
         {status.data &&
           status.data.length === 0 &&
           "There are no objects in your database yet."}
-        {status.isLoading && "is Loading..."}
-        {status.error && "Oh no! There was an error loading your data."}
       </List>
     </div>
   )
+
+  // Delete Item from API
+  async function deleteOne(id) {
+    const deleteUrl = url + id
+    const headers = {
+      headers: {
+        "X-API-Key": process.env.REACT_APP_X_API_KEY,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+    const newStatus = { ...status, isLoading: true }
+    const promise = axios.delete(deleteUrl, headers)
+
+    toast.promise(promise, {
+      loading: "Loading...",
+      success: "The entry was deleted successfully",
+      error: "Oh no! There was an error deleting your data. Please try again.",
+    })
+
+    setStatus(newStatus)
+
+    try {
+      await promise
+      newStatus.data = status.data.filter(album => album.id !== id)
+      newStatus.error = null
+      setStatus(newStatus)
+    } catch (error) {
+      newStatus.error = await error.message
+      console.error("There was an error deleting data:", error)
+      setStatus(newStatus)
+    } finally {
+      setStatus({ ...newStatus, isLoading: false })
+    }
+  }
+
+  // Edit Item from API
+  function showEditModal(id) {
+    setCurrentAlbumId(id)
+  }
+
+  async function editOne(id, newObject) {
+    const editUrl = url + id
+    const options = {
+      headers: {
+        "X-API-Key": process.env.REACT_APP_X_API_KEY,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+    const newStatus = { ...status, isLoading: true }
+    const currentObject = newStatus.data.filter(album => album.id === id)[0]
+    const newListObject = { ...currentObject, ...newObject }
+    const promise = axios.put(editUrl, newObject, options)
+
+    toast.promise(promise, {
+      loading: "Loading...",
+      success: ({ data }) => `"${data.title}" was saved successfully`,
+      error: "Oh no! There was an error deleting your data. Please try again.",
+    })
+
+    setStatus(newStatus)
+
+    try {
+      await promise
+      newStatus.data[newStatus.data.indexOf(currentObject)] = newListObject
+      newStatus.error = null
+      setStatus(newStatus)
+    } catch (error) {
+      newStatus.error = await error.message
+      console.error("There was an error deleting data:", error)
+      setStatus(newStatus)
+    } finally {
+      setStatus({ ...newStatus, isLoading: false })
+      closeModal()
+    }
+  }
+
+  // Exit Modal
+  function closeModal() {
+    setCurrentAlbumId(null)
+  }
 }
 
 export default App
