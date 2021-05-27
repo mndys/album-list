@@ -24,7 +24,6 @@ function App() {
         toastOptions={{
           style: {
             color: "var(--color-primary-dark)",
-            transform: "translate(0, -20%)",
           },
         }}
       />
