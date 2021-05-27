@@ -48,7 +48,8 @@ export default function Modal({ status, id, handleEdit, handleClose }) {
           onChange={event =>
             setNewObject({
               ...newObject,
-              released_in: Number(event.target.value),
+              released_in:
+                event.target.value === "" ? "" : Number(event.target.value),
             })
           }
           required

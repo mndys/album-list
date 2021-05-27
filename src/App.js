@@ -131,7 +131,7 @@ function App() {
     toast.promise(promise, {
       loading: "Loading...",
       success: ({ data }) => `"${data.title}" was saved successfully`,
-      error: "Oh no! There was an error deleting your data. Please try again.",
+      error: "Oh no! There was an error saving your data. Please try again.",
     })
 
     setStatus(newStatus)
