@@ -64,8 +64,6 @@ export default function Modal({ status, id, handleEdit, handleClose }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    console.log("id", id)
-    console.log("newObject", newObject)
     handleEdit(id, newObject)
   }
 }
