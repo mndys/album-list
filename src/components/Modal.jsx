@@ -23,6 +23,7 @@ export default function Modal({ status, id, handleEdit, handleClose }) {
             setNewObject({ ...newObject, title: event.target.value })
           }}
           pattern="[A-Za-z].+"
+          autoFocus
           required
         />
         <label htmlFor="artist">Artist</label>
