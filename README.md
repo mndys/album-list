@@ -8,7 +8,7 @@ It renders a table with all albums available from the API. Album titles, artists
 
 ## TechStack
 
-`React with custom hooks` // `Jest` // `Hk-test-api` // `Axios` // `Styled-components` // `Iconify` // `React-hot-toast`
+`React with custom hooks` // `Jest with react-testing-library` // `Hk-test-api` // `Axios` // `Styled-components` // `Iconify` // `React-hot-toast`
 
 ---
 
