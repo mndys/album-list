@@ -1,24 +1,16 @@
 # Album-List
 
-## Aufgabe 1
+React SPA that uses the [API described below](#api) to manage music albums.
 
-Bauen Sie bitte eine Single-Page-Application mit dem JavaScript-Framework Ihrer Wahl, die die [unten beschriebene API](#api) zur Verwaltung von Musik-Alben bedient.
+## Description
 
-Folgende Funktionen sollen enthalten sein:
+It renders a table with all albums available from the API. Album titles, artists and release years may be edited, and individual records can be deleted entirely.
 
-- Display all albums in a list view
-- Edit an album
-- Delete an album
+## TechStack
 
-Es müssen nur die Attribute `title`, `artist` und `released_in` angezeigt und bearbeitet werden können.
+`React with custom hooks`, `Hk-test-api`, `Axios`, `Styled-components`, `Iconify`, `React-hot-toast`
 
-Verwalten Sie Ihren Code bitte mit git und senden Sie uns das Ergebnis als Link zu einem git forge (GitLab, GitHub, etc.) oder Zip per E-Mail zu.
-
-## Aufgabe 2
-
-Inspect https://hk-test-api.herokuapp.com/temperature and describe the problem.
-
-Propose a solution that does not require changing the source code.
+---
 
 ## API
 
