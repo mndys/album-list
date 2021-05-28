@@ -8,14 +8,26 @@ const handleDelete = jest.fn()
 const handleEdit = jest.fn()
 
 describe("ListItem Component", () => {
-  it("renders a table from data variable", () => {
-    render(<ListItem {...{ data, handleDelete, handleEdit }} />)
+  it("renders a tbody from data variable", () => {
+    render(
+      <table>
+        <tbody>
+          <ListItem {...{ data, handleDelete, handleEdit }} />
+        </tbody>
+      </table>
+    )
 
     expect(screen.getByRole("row")).toBeVisible()
   })
 
   it("calls a delete function on click of the trash can icon", () => {
-    render(<ListItem {...{ data, handleDelete, handleEdit }} />)
+    render(
+      <table>
+        <tbody>
+          <ListItem {...{ data, handleDelete, handleEdit }} />
+        </tbody>
+      </table>
+    )
 
     userEvent.click(screen.getByLabelText("delete"))
 
@@ -24,7 +36,13 @@ describe("ListItem Component", () => {
   })
 
   it("calls an edit function on click of the edit icon", () => {
-    render(<ListItem {...{ data, handleDelete, handleEdit }} />)
+    render(
+      <table>
+        <tbody>
+          <ListItem {...{ data, handleDelete, handleEdit }} />
+        </tbody>
+      </table>
+    )
 
     userEvent.click(screen.getByLabelText("edit"))
 
