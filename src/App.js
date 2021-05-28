@@ -69,7 +69,7 @@ function App() {
         )}
         {status.data &&
           status.data.length === 0 &&
-          "There are no objects in your database yet."}
+          "There are no albums in the database."}
       </List>
     </div>
   )
