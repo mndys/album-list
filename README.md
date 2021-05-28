@@ -1,6 +1,6 @@
 # Album-List
 
-React SPA that uses the [API described below](#api) to manage music albums.
+React SPA that uses the Hk-test-api to manage music albums.
 
 ## Description
 
@@ -8,121 +8,9 @@ It renders a table with all albums available from the API. Album titles, artists
 
 ## TechStack
 
-`React with custom hooks`, `Hk-test-api`, `Axios`, `Styled-components`, `Iconify`, `React-hot-toast`
+`React with custom hooks` // `Hk-test-api` // `Axios` // `Styled-components` // `Iconify` // `React-hot-toast`
 
 ---
-
-## API
-
-Endpoint:
-`https://hk-test-api.herokuapp.com/albums`
-
-Authenticate using this HTTP header:
-`X-API-Key: secret`
-(Yes, the secret is "secret".)
-
-Enable JSON output by setting the HTTP `Accept` header to `application/json`.
-
-Beachten Sie, dass sich die Datenbank der API jede Stunde automatisch zurücksetzt.
-
-### List all albums:
-
-`GET` `https://hk-test-api.herokuapp.com/albums`
-
-```
-curl \
-  -XGET \
-  -H'X-API-Key: secret' \
-  -H'Accept: application/json' \
-  'https://hk-test-api.herokuapp.com/albums'
-```
-
-```
-[
-  {
-    "id": 24,
-    "title": "Saufen morgens, mittags, abends - Die Party",
-    "artist": "Ingo ohne Flamingo",
-    "released_in": 2018,
-    "created_at": "2021-04-01T11:02:04.348Z",
-    "updated_at": "2021-04-01T11:02:04.348Z",
-    "url": "https://hk-test-api.herokuapp.com/albums/24.json"
-  },
-  [...]
-  {
-    "id": 27,
-    "title": "Thriller",
-    "artist": "Michael Jackson",
-    "released_in": 1982,
-    "created_at": "2021-04-01T11:02:04.385Z",
-    "updated_at": "2021-04-01T11:02:04.385Z",
-    "url": "https://hk-test-api.herokuapp.com/albums/27.json"
-  }
-]
-```
-
-### Create a new album:
-
-`POST` `https://hk-test-api.herokuapp.com/albums`
-
-```
-curl \
-  -XPOST \
-  -H'X-API-Key: secret' \
-  -H'Content-Type: application/json' \
-  -H'Accept: application/json' \
-  -d'{"title": "Test Title", "artist": "Me", "released_in": 2021}' \
-  'https://hk-test-api.herokuapp.com/albums'
-```
-
-```
-{
-  "id": 29,
-  "title": "Test Title",
-  "artist": "Me",
-  "released_in": 2021,
-  "created_at": "2021-04-01T11:22:00.058Z",
-  "updated_at": "2021-04-01T11:22:00.058Z",
-  "url": "https://hk-test-api.herokuapp.com/albums/29.json"
-}
-```
-
-### Update an existing album:
-
-`PUT` `https://hk-test-api.herokuapp.com/albums/ID`
-
-```
-curl \
-  -XPUT \
-  -H'X-API-Key: secret' \
-  -H'Content-Type: application/json' \
-  -H'Accept: application/json' \
-  -d'{"artist": "You", "released_in": 3021}' \
-  'https://hk-test-api.herokuapp.com/albums/29'
-```
-
-```
-{
-  "id": 29,
-  "title": "Test Title",
-  "artist": "You",
-  "released_in": 3021,
-  "created_at": "2021-04-01T11:22:00.058Z",
-  "updated_at": "2021-04-01T11:24:38.741Z",
-  "url": "https://hk-test-api.herokuapp.com/albums/29.json"
-}
-```
-
-### Delete an album:
-
-`DELETE` `https://hk-test-api.herokuapp.com/albums/ID`
-
-```
-curl \
-  -XDELETE \
-  -H'X-API-Key: secret' \
-  'https://hk-test-api.herokuapp.com/albums/29'
-```
 
 ## Getting Started with Create React App
 
